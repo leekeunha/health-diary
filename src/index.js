@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import AllProducts from "./pages/AllProducts";
 import AllBodyParts from "./pages/AllBodyParts";
 import AllSports from "./pages/AllSports";
+import AllHistories from "./pages/AllHistories";
 import AllSportsSets from "./pages/AllSportsSets";
 import ProductDetail from "./pages/ProductDetail";
 import NewProduct from "./pages/NewProduct";
@@ -26,6 +27,8 @@ const router = createBrowserRouter([
       { path: "/products", element: <AllProducts /> },
       { path: "/sports", element: <AllSports /> },
       { path: "/sets", element: <AllSportsSets /> },
+      { path: "/histories", element: <AllHistories /> },
+
       {
         path: "/products/new",
         element: (

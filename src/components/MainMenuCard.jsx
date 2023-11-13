@@ -12,11 +12,10 @@ export default function MainMenuCard({
         if (id === 0) {
           navigate(`/BodyParts/`);
         } else if (id === 1) {
-          navigate(`/ExerciseHistoryView/`);
+          navigate(`/Histories/`);
         } else {
           navigate(`/ExerciseHistoryViewBySport/`);
         }
-
       }}
       className='flex justify-center items-center h-[240px] rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105'
     >

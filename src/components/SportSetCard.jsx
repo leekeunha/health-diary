@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import SetInput from './SetInput';
+import { useFormContext } from 'react-hook-form';
+
 export default function SportSetCard({ sport }) {
   const [setCount, setSetCount] = useState(3);
+  const { setValue } = useFormContext();
 
   useEffect(() => {
-    console.log('sport:', sport);
-  }, [sport]);
+    for (let i = 0; i < setCount; i++) {
+      setValue(`${sport.id}.sets.${i}.weight`, '');
+      setValue(`${sport.id}.sets.${i}.reps`, '');
+    }
+  }, [sport, setCount, setValue]);
 
-  // 선택된 세트 수에 따라 SetInput 컴포넌트들을 렌더링합니다.
   const renderSetInputs = () => {
     let inputs = [];
     for (let i = 1; i <= setCount; i++) {
-      inputs.push(<SetInput key={i} setNumber={i} />);
+      inputs.push(<SetInput key={i} setNumber={i} sportId={sport.id} />);
     }
     return inputs;
   };
@@ -28,7 +33,7 @@ export default function SportSetCard({ sport }) {
         >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(number => (
             <option key={number} value={number}>
-              {number} Set
+              {number} sets
             </option>
           ))}
         </select>

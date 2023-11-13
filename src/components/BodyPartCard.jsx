@@ -14,10 +14,10 @@ export default function BodyPartCard({
         setSelectedBodyPart(bodyPart);
         navigate(`/sports`);
       }}
-      className='rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105'
+      className='flex justify-center items-center h-[140px] rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105'
     >
       <div className='text-center'>
-        <p>{name}</p>
+        <p className='text-3xl'>{name}</p>
       </div>
     </li>
   );
