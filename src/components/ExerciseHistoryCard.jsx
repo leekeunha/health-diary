@@ -57,7 +57,12 @@ export default function ExerciseHistoryCard({
 
       {bodyParts.map((bodyPart, index) => (
         <div key={index}>
-          <span className='font-bold text-blue-600'>{bodyPart[1]}</span> : {sports[bodyPart[0]].map((sport, idx) => <span key={idx}>{sport[1]}, </span>)}
+          <span className='font-bold text-blue-600'>{bodyPart[1]}</span> :
+          {sports[bodyPart[0]].map((sport, idx, arr) => (
+            <span key={idx}>
+              {sport[1]}{idx < arr.length - 1 ? ', ' : ''}
+            </span>
+          ))}
         </div>
       ))}
     </div>
