@@ -13,7 +13,7 @@ export default function ExerciseHistoryCard({
   useEffect(() => {
     const fetchDetails = async () => {
       let parts = [];
-      let allSports = [];
+      let sportsByBodyPart = {};
       console.log({ history });
       for (const bodyPartId in history) {
         if (bodyPartId !== 'date') {
@@ -23,11 +23,11 @@ export default function ExerciseHistoryCard({
           const sports = await Promise.all(
             sportIds.map(sportId => getExerciseNameById(bodyPartId, sportId))
           );
-          allSports = [...allSports, ...sports];
+          sportsByBodyPart[bodyPartId] = sports;
         }
       }
       setBodyParts(parts);
-      setSports(allSports);
+      setSports(sportsByBodyPart);
     };
     console.log({ sports });
     fetchDetails();
@@ -55,11 +55,11 @@ export default function ExerciseHistoryCard({
         </div>
       </div>
 
-      {/* <ul> */}
-      {sports.map((name, index) => (
-        <span key={index}>{name[1]},</span>
+      {bodyParts.map((bodyPart, index) => (
+        <div key={index}>
+          <span className='font-bold text-blue-600'>{bodyPart[1]}</span> : {sports[bodyPart[0]].map((sport, idx) => <span key={idx}>{sport[1]}, </span>)}
+        </div>
       ))}
-      {/* </ul> */}
     </div>
   );
 }
