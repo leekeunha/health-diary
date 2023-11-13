@@ -38,13 +38,13 @@ export default function ExerciseHistoryCard({
   return (
     <div
       className='h-auto rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mb-4 p-4'
-      onClick={() => navigate(`/historyDetail`)}
+    // onClick={() => navigate(`/historyDetail`)}
 
     >
       <div className='flex justify-between'>
-        <div className='mb-2'>
-          <span className='text-xl font-bold'>{history.date}</span>
-        </div>
+        <span className='text-xl font-bold'>
+          {getFormattedDateWithWeekday(history.date)}
+        </span>
         <div>
           {bodyParts.map((bodyPart, index) => (
             <span key={index} className=''>
@@ -67,4 +67,12 @@ export default function ExerciseHistoryCard({
       ))}
     </div>
   );
+}
+
+
+function getFormattedDateWithWeekday(dateStr) {
+  const [year, month, day, time] = dateStr.split('.');
+  const date = new Date(`${year}-${month}-${day}`);
+  const weekday = date.toLocaleString('ko-KR', { weekday: 'long' }); // Adjust 'en-US' to your locale if needed
+  return `${year}.${month}.${day}.${time} ${weekday}`;
 }

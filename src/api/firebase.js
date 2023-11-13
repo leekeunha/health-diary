@@ -118,16 +118,13 @@ export async function getExerciseHistories(uid) {
   });
 }
 
-// "2023110817"과 같은 문자열을 "2023.11.08" 날짜 형식으로 변환합니다.
-// 시간은 추가 정보가 필요하므로 가정한 값 "10:00"을 사용합니다.
 function formatDate(dateStr) {
   console.log({ dateStr });
   const year = dateStr.substring(0, 4);
   const month = dateStr.substring(4, 6);
   const day = dateStr.substring(6, 8);
   const hour = dateStr.substring(8, 10);
-  // 실제 사용할 때는 dateStr에 시간 정보를 포함시켜야 합니다.
-  return `${year}.${month}.${day}.${hour}:00`; // 시간 정보를 어떻게 처리할지에 따라 변경이 필요합니다.
+  return `${year}.${month}.${day}.${hour}:00`;
 }
 
 
