@@ -152,16 +152,26 @@ export async function getBodyPartById(id) {
 }
 
 export async function getExerciseNameById(bodyPartId, exerciseId) {
-  // return get(ref(database, `exerciseHistory/${uid}`)).then((snapshot) => {
-  return get(ref(database, `bodyParts/${bodyPartId}/${exerciseId}`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log('getBodyPartById', Object.values(snapshot.val()));
-      return Object.values(snapshot.val());
-    }
-    return [];
-  });
-}
+  const sportPath = `sports/${bodyPartId}/${exerciseId}`;
+  try {
 
+    const snapshot = await get(ref(database, sportPath));
+    console.log('snapshot: ', snapshot);
+    if (snapshot.exists()) {
+      // If the data at the path is an object with names as keys, we extract the keys
+      const exerciseNames = snapshot.val();
+
+      // Assuming that the structure is an object with the names as keys
+      return Object.keys(exerciseNames).map(key => exerciseNames[key]);
+    } else {
+      console.log('No data available for: ', sportPath);
+      return [];
+    }
+  } catch (error) {
+    console.error('Firebase getExerciseNameById error: ', error);
+    throw new Error(`Unable to fetch exercise names: ${error.message}`);
+  }
+}
 
 export async function getMainMenus() {
   return get(ref(database, 'mainMenus')).then((snapshot) => {

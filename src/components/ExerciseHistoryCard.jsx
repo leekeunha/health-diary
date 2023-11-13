@@ -8,23 +8,21 @@ export default function ExerciseHistoryCard({
 }) {
   const navigate = useNavigate();
   const [bodyParts, setBodyParts] = useState([]);
+  const [sports, setSports] = useState([]);
 
   useEffect(() => {
-    // Assuming you have a function that gets the body parts and exercises details by ID
     const fetchDetails = async () => {
       let parts = [];
       for (const bodyPartId in history) {
         if (bodyPartId !== 'date') {
           const bodyPart = await getBodyPartById(bodyPartId);
           let bodyPartName = bodyPart[1];
-
-          const exerciseIds = history[bodyPartId];
-          console.log({ exerciseIds }); //여기 까지는 잘 나오는지 확인 했음.//bodyPartId와 exerciseId로 exerciseName의 베열을 불러오는 함수를 작성해야 돼
-          const exerciseNames = await Promise.all(exerciseIds.map(id => getExerciseNameById(bodyPartId, id))); // Assuming you have such a function
-          //현재 exerciseNames과 빈 배열로 들어옴.즉,getExerciseNameById가 함수 수정해야 돼!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          //!!!!!!!!!!!!!!!!
-          console.log({ exerciseNames });
-          //parts.push({ bodyPartName, exerciseNames });
+          console.log({ bodyPartName });
+          const sportIds = history[bodyPartId];
+          console.log({ sportIds });
+          const sports = await Promise.all(sportIds.map(sportId => getExerciseNameById(bodyPartId, sportId)));
+          setSports(sports);
+          console.log({ sports });
         }
       }
       setBodyParts(parts);
@@ -43,14 +41,15 @@ export default function ExerciseHistoryCard({
       </div>
       {bodyParts.map((part, index) => (
         <div key={index} className='text-center'>
-          <p className='text-lg font-medium'>{part.bodyPartName}</p>
-          <ul>
-            {part.exerciseNames.map((name, index) => (
-              <li key={index}>{name}</li>
-            ))}
-          </ul>
+          <p className='text-lg font-medium'>{part}</p>
+
         </div>
       ))}
+      <ul>
+        {sports.map((name, index) => (
+          <li key={index}>{name[1]}</li>
+        ))}
+      </ul>
     </li>
   );
 }
