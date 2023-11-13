@@ -16,20 +16,21 @@ export default function ExerciseHistoryCard({
       for (const bodyPartId in history) {
         if (bodyPartId !== 'date') {
           const bodyPart = await getBodyPartById(bodyPartId);
-          let bodyPartName = bodyPart[1];
-          console.log({ bodyPartName });
+          parts.push(bodyPart); // Add the fetched body part to the array
           const sportIds = history[bodyPartId];
-          console.log({ sportIds });
-          const sports = await Promise.all(sportIds.map(sportId => getExerciseNameById(bodyPartId, sportId)));
-          setSports(sports);
-          console.log({ sports });
+          const sports = await Promise.all(
+            sportIds.map(sportId => getExerciseNameById(bodyPartId, sportId))
+          );
+          setSports(sports); // You might want to handle sports update differently
         }
       }
-      setBodyParts(parts);
+      setBodyParts(parts); // Update the state with the collected parts
     };
+    console.log({ bodyParts });
 
     fetchDetails();
   }, [history]);
+
 
   return (
     <li
@@ -41,7 +42,7 @@ export default function ExerciseHistoryCard({
       </div>
       {bodyParts.map((part, index) => (
         <div key={index} className='text-center'>
-          <p className='text-lg font-medium'>{part}</p>
+          <p className='text-lg font-medium'>{part[1]}</p>
 
         </div>
       ))}
