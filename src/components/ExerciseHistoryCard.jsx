@@ -13,44 +13,53 @@ export default function ExerciseHistoryCard({
   useEffect(() => {
     const fetchDetails = async () => {
       let parts = [];
+      let allSports = [];
+      console.log({ history });
       for (const bodyPartId in history) {
         if (bodyPartId !== 'date') {
           const bodyPart = await getBodyPartById(bodyPartId);
-          parts.push(bodyPart); // Add the fetched body part to the array
+          parts.push(bodyPart);
           const sportIds = history[bodyPartId];
           const sports = await Promise.all(
             sportIds.map(sportId => getExerciseNameById(bodyPartId, sportId))
           );
-          setSports(sports); // You might want to handle sports update differently
+          allSports = [...allSports, ...sports];
         }
       }
-      setBodyParts(parts); // Update the state with the collected parts
+      setBodyParts(parts);
+      setSports(allSports);
     };
-    console.log({ bodyParts });
-
+    console.log({ sports });
     fetchDetails();
   }, [history]);
 
 
-  return (
-    <li
-      onClick={() => navigate(`/historyDetail`)}
-      className='flex flex-col justify-center items-center h-auto rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mb-4 p-4'
-    >
-      <div className='text-center mb-2'>
-        <p className='text-xl font-bold'>{history.date}</p>
-      </div>
-      {bodyParts.map((part, index) => (
-        <div key={index} className='text-center'>
-          <p className='text-lg font-medium'>{part[1]}</p>
 
+  return (
+    <div
+      className='h-auto rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mb-4 p-4'
+      onClick={() => navigate(`/historyDetail`)}
+
+    >
+      <div className='flex justify-between'>
+        <div className='mb-2'>
+          <span className='text-xl font-bold'>{history.date}</span>
         </div>
+        <div>
+          {bodyParts.map((bodyPart, index) => (
+            <span key={index} className=''>
+              <span className='text-lg font-medium bg-blue-500 text-white rounded px-2 py-2 border-blue-700 mr-2'>{bodyPart[1]}</span>
+
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* <ul> */}
+      {sports.map((name, index) => (
+        <span key={index}>{name[1]},</span>
       ))}
-      <ul>
-        {sports.map((name, index) => (
-          <li key={index}>{name[1]}</li>
-        ))}
-      </ul>
-    </li>
+      {/* </ul> */}
+    </div>
   );
 }
