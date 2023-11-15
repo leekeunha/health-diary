@@ -10,9 +10,7 @@ export default function SportHistoryCard({
     >
       <div className='flex justify-end'>
         <span className='text-lg font-medium bg-green-500 text-white rounded px-2 py-2 border-blue-700 mr-2'>
-          {sportHistory.date}</span>
-
-
+          {getFormattedDateWithWeekday(sportHistory.date)}</span>
       </div>
       <div className='flex text-xl ml-20 '>
         <span className='text-bold w-1/6 text-center'>최대 중량</span>
@@ -28,3 +26,18 @@ export default function SportHistoryCard({
     </div>
   );
 }
+
+
+function getFormattedDateWithWeekday(dateStr) {
+  var year = dateStr.substring(0, 4);
+  var month = dateStr.substring(4, 6);
+  var day = dateStr.substring(6, 8);
+  var hour = dateStr.substring(8, 10);
+
+  var date = new Date(year, month - 1, day, hour);
+
+  var options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'long' };
+
+  return date.toLocaleString('ko-KR', options);
+}
+

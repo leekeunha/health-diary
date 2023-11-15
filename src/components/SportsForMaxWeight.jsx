@@ -26,7 +26,7 @@ export default function SportsForMaxWeight() {
         <>
             {isLoading && <p>Loading...</p>}
             {error && <p>{error}</p>}
-            <p className='text-3xl text-center pt-3'>열람할 종목을 선택해 주세요.</p>
+            <p className='text-3xl text-center pt-3 mt-10'>열람할 종목을 선택해 주세요.</p>
             <ul className='mt-10 flex flex-col'>
                 {sports &&
                     sports.map((sport) => (

@@ -17,7 +17,7 @@ export default function SportHistories({ sport }) {
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>{error.message}</p>}
-      {sport.name}
+      <div className='text-3xl text-center mt-10'>{sport.name}</div>
       <ul className='mt-10 flex flex-col'>
         {sportHistories &&
           sportHistories.map((sportHistory) => (
