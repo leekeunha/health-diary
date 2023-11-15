@@ -18,11 +18,12 @@ export default function SportSets({ filtered }) {
 
   const handleClick = async (e) => {
     //e.preventDefault();
-    // await addSport('08710185-8618-4f40-9f8a-5350bb0f0553', '스쿼트');
-    // await addSport('08710185-8618-4f40-9f8a-5350bb0f0553', '레그프레스');
-    // await addSport('08710185-8618-4f40-9f8a-5350bb0f0553', '런지');
-    // await addSport('08710185-8618-4f40-9f8a-5350bb0f0553', '레그 컬');
-    // await addSport('08710185-8618-4f40-9f8a-5350bb0f0553', '레그 익스텐션');
+    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '데드리프트');
+    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '랫풀다운');
+    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '로우풀');
+    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '바벨로우');
+    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '덤벨로우');
+
 
     const formData = methods.getValues();
     const exerciseDateFormatted = format(date, 'yyyyMMddHH');

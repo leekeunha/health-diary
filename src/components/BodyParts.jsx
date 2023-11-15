@@ -10,7 +10,7 @@ export default function BodyParts({ text, redirectUrl }) {
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <p className='text-3xl text-center pt-3'>{text}</p>
+      <p className='text-3xl text-center pt-10'>{text}</p>
       <ul className='mt-10 flex flex-col'>
         {bodyParts &&
           bodyParts.map((bodyPart) => (
