@@ -18,11 +18,11 @@ export default function SportSets({ filtered }) {
 
   const handleClick = async (e) => {
     //e.preventDefault();
-    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '데드리프트');
-    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '랫풀다운');
-    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '로우풀');
-    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '바벨로우');
-    await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '덤벨로우');
+    // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '데드리프트');
+    // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '랫풀다운');
+    // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '로우풀');
+    // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '바벨로우');
+    // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '덤벨로우');
 
 
     const formData = methods.getValues();
