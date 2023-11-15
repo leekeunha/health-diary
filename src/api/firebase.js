@@ -72,8 +72,7 @@ export async function addBodyPart(bodyPartName) {
 }
 
 export async function addSport(bodyPartId, sportName) {
-  debugger;
-  const sportId = uuid(); // Generate a unique ID for the sport
+  const sportId = uuid();
   const sportData = {
     id: sportId,
     name: sportName,
@@ -97,12 +96,9 @@ export async function getExerciseHistories(uid) {
       const userData = snapshot.val();
       console.log('userData : ', JSON.stringify(userData));
 
-      // 각 날짜별로 운동 기록을 반환하는 구조를 생성합니다.
       return Object.entries(userData).map(([date, bodyParts]) => {
-        // 날짜 및 시간 형식을 변환합니다.
         const formattedDate = formatDate(date);
 
-        // bodyPartId별로 exerciseId의 배열을 생성합니다.
         let exerciseByBodyPart = {};
         Object.entries(bodyParts).forEach(([bodyPartId, exercises]) => {
           exerciseByBodyPart[bodyPartId] = Object.keys(exercises);
@@ -119,13 +115,46 @@ export async function getExerciseHistories(uid) {
 }
 
 function formatDate(dateStr) {
-  console.log({ dateStr });
+  //console.log({ dateStr });
   const year = dateStr.substring(0, 4);
   const month = dateStr.substring(4, 6);
   const day = dateStr.substring(6, 8);
   const hour = dateStr.substring(8, 10);
   return `${year}.${month}.${day}.${hour}:00`;
 }
+
+export async function getSportHistories(userId, exerciseId) {
+  const exerciseHistoryRef = ref(database, `exerciseHistory/${userId}`);
+  try {
+    const snapshot = await get(exerciseHistoryRef);
+    if (snapshot.exists()) {
+      let maxSetsByDate = {};
+      const userData = snapshot.val();
+
+      Object.entries(userData).forEach(([date, bodyParts]) => {
+        Object.entries(bodyParts).forEach(([_, exercises]) => {
+          const exercise = exercises[exerciseId];
+          if (exercise) {
+            Object.values(exercise).forEach(set => {
+              if (!maxSetsByDate[date] || set.weight > maxSetsByDate[date].weight) {
+                maxSetsByDate[date] = { date, reps: set.reps, weight: set.weight };
+              }
+            });
+          }
+        });
+      });
+
+      return Object.values(maxSetsByDate);
+    } else {
+      console.log('No data available for this user');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching sport histories:', error);
+    return null;
+  }
+}
+
 
 
 
@@ -227,3 +256,5 @@ export async function saveExerciseSets(userId, exerciseDateFormatted, exerciseBo
   const dbRef = ref(database, `exerciseHistory/${userId}/${exerciseDateFormatted}/${exerciseBodyPartId}`);
   return set(dbRef, exerciseHistoryData);
 }
+
+

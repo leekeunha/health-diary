@@ -14,7 +14,7 @@ export default function ExerciseHistoryCard({
     const fetchDetails = async () => {
       let parts = [];
       let sportsByBodyPart = {};
-      console.log({ history });
+      //console.log({ history });
       for (const bodyPartId in history) {
         if (bodyPartId !== 'date') {
           const bodyPart = await getBodyPartById(bodyPartId);
@@ -29,7 +29,7 @@ export default function ExerciseHistoryCard({
       setBodyParts(parts);
       setSports(sportsByBodyPart);
     };
-    console.log({ sports });
+
     fetchDetails();
   }, [history]);
 
@@ -37,7 +37,7 @@ export default function ExerciseHistoryCard({
 
   return (
     <div
-      className='h-auto rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mb-4 p-4'
+      className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mb-4 p-4'
     // onClick={() => navigate(`/historyDetail`)}
 
     >

@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthContextProvider } from './context/AuthContext';
 import { BodyPartContextProvider } from './context/BodyPartContext';
 import Navbar from './components/Navbar';
+import { SportContextProvider } from './context/SportContext';
 
 const queryClient = new QueryClient();
 function App() {
@@ -10,9 +11,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
         <BodyPartContextProvider>
-          <Navbar />
-          <Outlet />
+          <SportContextProvider>
+            <Navbar />
+            <Outlet />
+          </SportContextProvider>
         </BodyPartContextProvider>
+
       </AuthContextProvider>
     </QueryClientProvider>
   );

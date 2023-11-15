@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import SportCard from './SportCard';
-
-// import useProducts from '../hooks/useProducts';
-//import useBodyParts from '../hooks/useBodyParts';
 import useSports from '../hooks/useSports';
 import { useParams, useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { useBodyPartContext } from '../context/BodyPartContext';
 export default function Sports() {
-  //const { id } = useParams();
+
   const navigate = useNavigate();
   const { selectedBodyPart } = useBodyPartContext();
   const {
@@ -26,7 +23,7 @@ export default function Sports() {
       setSports(sportsWithChecked);
     }
 
-    console.log('sports', sports);
+    //console.log('sports', sports);
   }, [fetchedSports]);
 
   const handleUpdate = (updated) => {
@@ -34,7 +31,7 @@ export default function Sports() {
   }
 
   useEffect(() => {
-    console.log('Updated sports state:', sports);
+    //console.log('Updated sports state:', sports);
   }, [sports]);
 
   const handleClick = (e) => {

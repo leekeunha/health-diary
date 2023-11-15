@@ -15,7 +15,7 @@ export default function SportCard({
   }
   return (
     <li
-      className='flex justify-center items-center h-24 rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 m-3'
+      className='bg-sky-100 flex justify-center items-center h-24 rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 m-3'
     >
       <input
         type='checkbox'
@@ -27,7 +27,7 @@ export default function SportCard({
       <label htmlFor={id} className="w-full h-full flex justify-center items-center text-2xl">
         {name}
       </label>
-      {checked}
+      {/* {checked} */}
     </li>
   );
 }

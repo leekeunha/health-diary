@@ -14,10 +14,10 @@ export default function MainMenuCard({
         } else if (id === 1) {
           navigate(`/Histories/`);
         } else {
-          navigate(`/ExerciseHistoryViewBySport/`);
+          navigate(`/MaxWeightHistories/`);
         }
       }}
-      className='flex justify-center items-center h-[240px] rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105'
+      className='bg-sky-100 flex justify-center items-center h-[240px] rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mt-4'
     >
       <div>
         <p className='text-3xl'>{name}</p>
