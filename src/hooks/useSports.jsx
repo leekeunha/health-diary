@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getSports as fetchSports } from '../api/firebase';
 
 export default function useSports(id) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function SportCardForMaxWeight({
@@ -6,10 +6,6 @@ export default function SportCardForMaxWeight({
   sport: { name },
 }) {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(sport);
-  }, []);
 
   return (
     <div

@@ -1,20 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getSportHistories as fetchSportHistories } from '../api/firebase';
 import { useAuthContext } from '../context/AuthContext';
-import { useEffect } from 'react';
 
 export default function useSportHistories(sport) {
   const { uid } = useAuthContext();
 
-  // useEffect(() => {
-  //   console.log('sport from useSportHistories', sport);
-
-  //   if (sport) {
-  //     console.log('sport from useSportHistories in if', sport);
-  //   }
-  // }, [sport]); // sport 객체의 변경을 감시
-
-  // sport 객체와 그 id 속성이 있는지 확인
   const sportId = sport?.id;
 
   const sportHistoriesQuery = useQuery(

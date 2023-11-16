@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useBodyPartContext } from '../context/BodyPartContext';
 import { useAuthContext } from '../context/AuthContext';
-import { addSport, saveExerciseSets } from '../api/firebase';
+import { saveExerciseSets } from '../api/firebase';
 import { format } from 'date-fns';
 import { useForm, FormProvider } from 'react-hook-form';
 

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useSport } from '../context/SportContext';
+import React from 'react';
 
 export default function SportHistoryCard({
   sportHistory,

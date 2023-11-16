@@ -1,17 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SportHistoryCard from './SportHistoryCard';
 import useSportHistories from '../hooks/useSportHistories';
-import { useAuthContext } from '../context/AuthContext';
 
 export default function SportHistories({ sport }) {
   const { sportHistoriesQuery: { isLoading, error, data: sportHistories } } = useSportHistories(sport);
-
-  useEffect(() => {
-    if (sportHistories) {
-      console.log('Sport Histories:', JSON.stringify(sportHistories));
-      console.log('sport from url', sport);
-    }
-  }, [sportHistories]);
 
   return (
     <>
