@@ -7,7 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { getDatabase, ref, set, get, remove, update } from 'firebase/database';
+import { getDatabase, ref, set, get, remove } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -132,7 +132,7 @@ export async function getSportHistories(userId, exerciseId) {
       const userData = snapshot.val();
 
       for (const [date, exercises] of Object.entries(userData)) {
-        for (const [bodyPartId, exerciseData] of Object.entries(exercises)) {
+        for (const [exerciseData] of Object.entries(exercises)) {
           const exerciseSets = exerciseData[exerciseId];
           if (exerciseSets) {
             for (const set of Object.values(exerciseSets)) {

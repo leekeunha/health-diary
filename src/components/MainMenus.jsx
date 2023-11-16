@@ -6,7 +6,7 @@ import useMainMenus from '../hooks/useMainMenus';
 export default function MainMenus() {
 
   const {
-    mainMenusQuery: { isLoading, error, data: mainMenus },
+    mainMenusQuery: { data: mainMenus },
   } = useMainMenus();
 
   //const menus = [{ "id": 0, "name": "운동 일지 등록" }, { "id": 1, "name": "운동 일지 열람" }, { "id": 3, "name": "종목별 최고 중량 및 횟수 열람" }];

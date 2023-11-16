@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ExerciseHistoryCard from './ExerciseHistoryCard';
-import useExerciseHistories from '../hooks/useExerciseHistories';
 import { useAuthContext } from '../context/AuthContext';
 import { getExerciseHistories } from '../api/firebase';
-import { getBodyPartById } from '../api/firebase';
 
 export default function ExerciseHistories() {
   const { uid } = useAuthContext();

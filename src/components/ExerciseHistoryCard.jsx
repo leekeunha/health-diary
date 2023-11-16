@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useBodyPartContext } from '../context/BodyPartContext';
 import { getBodyPartById, getExerciseNameById } from '../api/firebase';
 
 export default function ExerciseHistoryCard({
   history,
 }) {
-  const navigate = useNavigate();
   const [bodyParts, setBodyParts] = useState([]);
   const [sports, setSports] = useState([]);
 
