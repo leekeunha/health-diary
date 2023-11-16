@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function MainMenuCard({
-  mainMenu,
   mainMenu: { id, name },
 }) {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SportCard from './SportCard';
 import useSports from '../hooks/useSports';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { useBodyPartContext } from '../context/BodyPartContext';
 export default function Sports() {

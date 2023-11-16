@@ -4,7 +4,7 @@ import { useBodyPartContext } from '../context/BodyPartContext';
 
 export default function BodyPartCard({
   bodyPart,
-  bodyPart: { id, name },
+  bodyPart: { name },
   redirectUrl,
 }) {
   const navigate = useNavigate();

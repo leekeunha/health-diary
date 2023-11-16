@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useSport } from '../context/SportContext';
 
 export default function SportCardForMaxWeight({
   sport,
