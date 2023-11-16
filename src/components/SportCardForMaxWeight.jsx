@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SportCardForMaxWeight({
   sport,
-  sport: { id, name },
+  sport: { name },
 }) {
   const navigate = useNavigate();
 
