@@ -131,18 +131,19 @@ export async function getSportHistories(userId, exerciseId) {
       let maxSetsByDate = {};
       const userData = snapshot.val();
 
-      Object.entries(userData).forEach(([date, bodyParts]) => {
-        Object.entries(bodyParts).forEach(([_, exercises]) => {
-          const exercise = exercises[exerciseId];
-          if (exercise) {
-            Object.values(exercise).forEach(set => {
-              if (!maxSetsByDate[date] || set.weight > maxSetsByDate[date].weight) {
-                maxSetsByDate[date] = { date, reps: set.reps, weight: set.weight };
+      for (const [date, exercises] of Object.entries(userData)) {
+        for (const [bodyPartId, exerciseData] of Object.entries(exercises)) {
+          const exerciseSets = exerciseData[exerciseId];
+          if (exerciseSets) {
+            for (const set of Object.values(exerciseSets)) {
+              const weight = parseInt(set.weight, 10);
+              if (!maxSetsByDate[date] || weight > maxSetsByDate[date].weight) {
+                maxSetsByDate[date] = { date, reps: set.reps, weight };
               }
-            });
+            }
           }
-        });
-      });
+        }
+      }
 
       return Object.values(maxSetsByDate);
     } else {

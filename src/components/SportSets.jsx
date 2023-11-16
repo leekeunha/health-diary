@@ -1,4 +1,3 @@
-// In SportSets component
 import React, { useState } from 'react';
 import SportSetCard from './SportSetCard';
 import Button from './ui/Button';
@@ -23,7 +22,6 @@ export default function SportSets({ filtered }) {
     // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '로우풀');
     // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '바벨로우');
     // await addSport('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9', '덤벨로우');
-
 
     const formData = methods.getValues();
     const exerciseDateFormatted = format(date, 'yyyyMMddHH');
