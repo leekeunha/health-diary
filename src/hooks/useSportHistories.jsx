@@ -6,7 +6,6 @@ export default function useSportHistories(sport) {
   const { uid } = useAuthContext();
 
   const sportId = sport?.id;
-
   const sportHistoriesQuery = useQuery(
     ['sportHistories', uid, sportId],
     () => fetchSportHistories(uid, sportId),

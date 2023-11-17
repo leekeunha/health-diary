@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SportHistoryCard from './SportHistoryCard';
 import useSportHistories from '../hooks/useSportHistories';
 
 export default function SportHistories({ sport }) {
   const { sportHistoriesQuery: { isLoading, error, data: sportHistories } } = useSportHistories(sport);
+
+  useEffect(() => {
+    console.log({ sportHistories });
+  }, []);
 
   return (
     <>

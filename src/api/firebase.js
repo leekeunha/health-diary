@@ -124,6 +124,8 @@ function formatDate(dateStr) {
 }
 
 export async function getSportHistories(userId, exerciseId) {
+  console.log({ userId });
+  console.log({ exerciseId });
   const exerciseHistoryRef = ref(database, `exerciseHistory/${userId}`);
   try {
     const snapshot = await get(exerciseHistoryRef);
@@ -132,7 +134,7 @@ export async function getSportHistories(userId, exerciseId) {
       const userData = snapshot.val();
 
       for (const [date, exercises] of Object.entries(userData)) {
-        for (const [exerciseData] of Object.entries(exercises)) {
+        for (const [bodyPartId, exerciseData] of Object.entries(exercises)) {
           const exerciseSets = exerciseData[exerciseId];
           if (exerciseSets) {
             for (const set of Object.values(exerciseSets)) {
