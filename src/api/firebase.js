@@ -134,7 +134,7 @@ export async function getSportHistories(userId, exerciseId) {
       const userData = snapshot.val();
 
       for (const [date, exercises] of Object.entries(userData)) {
-        for (const [bodyPartId, exerciseData] of Object.entries(exercises)) {
+        for (const exerciseData of Object.values(exercises)) {
           const exerciseSets = exerciseData[exerciseId];
           if (exerciseSets) {
             for (const set of Object.values(exerciseSets)) {
@@ -157,6 +157,7 @@ export async function getSportHistories(userId, exerciseId) {
     return null;
   }
 }
+
 
 
 
