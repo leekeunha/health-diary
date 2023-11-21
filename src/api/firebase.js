@@ -127,25 +127,34 @@ export async function getSportHistories(userId, exerciseId) {
   console.log({ userId });
   console.log({ exerciseId });
   const exerciseHistoryRef = ref(database, `exerciseHistory/${userId}`);
+
   try {
     const snapshot = await get(exerciseHistoryRef);
+
     if (snapshot.exists()) {
       let maxSetsByDate = {};
       const userData = snapshot.val();
+      console.log(JSON.stringify(userData));
 
       for (const [date, exercises] of Object.entries(userData)) {
         for (const exerciseData of Object.values(exercises)) {
           const exerciseSets = exerciseData[exerciseId];
           if (exerciseSets) {
             for (const set of Object.values(exerciseSets)) {
-              const weight = parseInt(set.weight, 10);
-              if (!maxSetsByDate[date] || weight > maxSetsByDate[date].weight) {
-                maxSetsByDate[date] = { date, reps: set.reps, weight };
+              // weight가 빈 문자열이 아닐 경우에만 처리
+              if (set.weight.trim() !== "") {
+                const weight = parseInt(set.weight, 10);
+                console.log({ weight });
+
+                if (!isNaN(weight) && (!maxSetsByDate[date] || weight > maxSetsByDate[date].weight)) {
+                  maxSetsByDate[date] = { date, reps: set.reps, weight };
+                }
               }
             }
           }
         }
       }
+      console.log({ maxSetsByDate });
 
       return Object.values(maxSetsByDate);
     } else {
@@ -157,6 +166,7 @@ export async function getSportHistories(userId, exerciseId) {
     return null;
   }
 }
+
 
 
 
