@@ -46,12 +46,6 @@ export default function Sports() {
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <p className='text-3xl text-center pt-3'>오늘 운동 한 종목을 선택해 주세요.</p>
-      <ul className='mt-10 flex flex-col'>
-        {sports &&
-          sports.map((sport) => (
-            <SportCard key={sport.id} sport={sport} onUpdate={handleUpdate} />
-          ))}
-      </ul>
       <div className='flex justify-between border-b border-gray-300 p-2 mt-10 ml-3'>
         <div><span className='text-2xl text-center mr-3'>선택한 종목:</span>
           {filtered.map((item) => (
@@ -60,6 +54,13 @@ export default function Sports() {
         </div>
         <Button text='선택 완료' onClick={handleClick} />
       </div>
+      <ul className='mt-10 flex flex-col'>
+        {sports &&
+          sports.map((sport) => (
+            <SportCard key={sport.id} sport={sport} onUpdate={handleUpdate} />
+          ))}
+      </ul>
+
     </>
   );
 }
