@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SportCardForMaxWeight from './SportCardForMaxWeight';
 import { useLocation } from 'react-router-dom';
 import useSports from '../hooks/useSports';
-import { useBodyPartContext } from '../context/BodyPartContext';
+//import { useBodyPartContext } from '../context/BodyPartContext';
 
 export default function SportsForMaxWeight() {
 

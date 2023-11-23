@@ -3,7 +3,7 @@ import SportSetCard from './SportSetCard';
 import Button from './ui/Button';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useBodyPartContext } from '../context/BodyPartContext';
+//import { useBodyPartContext } from '../context/BodyPartContext';
 import { useAuthContext } from '../context/AuthContext';
 import { saveExerciseSets } from '../api/firebase';
 import { format } from 'date-fns';
@@ -12,7 +12,7 @@ import ConfirmationModal from './ui/ConfimationModal';
 
 export default function SportSets({ filtered, bodyPart }) {
   const [date, setDate] = useState(new Date());
-  const { selectedBodyPart } = useBodyPartContext();
+  //const { selectedBodyPart } = useBodyPartContext();
   const { uid } = useAuthContext();
   const methods = useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -4,7 +4,7 @@ import MainMenus from '../components/MainMenus';
 import { useAuthContext } from '../context/AuthContext';
 import Button from '../components/ui/Button';
 export default function Home() {
-  const { user, login, logout } = useAuthContext();
+  const { user, login } = useAuthContext();
   return (
     <>
       <Banner></Banner>
