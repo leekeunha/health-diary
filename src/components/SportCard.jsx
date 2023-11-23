@@ -1,9 +1,12 @@
 import React from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
+import styles from './Todo.module.css';
 
 export default function SportCard({
   sport,
   sport: { id, name, checked },
-  onUpdate
+  onUpdate,
+  onDelete
 }) {
   // const navigate = useNavigate();
   const handleChange = (e) => {
@@ -12,6 +15,9 @@ export default function SportCard({
     onUpdate({ ...sport, checked })
     //console.log('{ ...sport, checked }', { ...sport, checked });
   }
+
+  const handleDelete = () => onDelete(sport);
+
   return (
     <li
       className='bg-sky-100 flex justify-center items-center h-24 rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 m-3'
@@ -26,6 +32,11 @@ export default function SportCard({
       <label htmlFor={id} className="w-full h-full flex justify-center items-center text-2xl">
         {name}
       </label>
+      <span className={styles.icon}>
+        <button onClick={handleDelete} className={styles.button}>
+          <FaTrashAlt />
+        </button>
+      </span>
       {/* {checked} */}
     </li>
   );

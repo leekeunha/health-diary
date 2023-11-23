@@ -4,11 +4,11 @@ import { useLocation } from 'react-router-dom';
 
 export default function AllSportsSets() {
   const location = useLocation();
-  const { filtered } = location.state || {};
+  const { filtered, bodyPart } = location.state || {};
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [filtered]);
+  // }, [filtered]);
 
-  return <SportSets filtered={filtered} />;
+  return <SportSets filtered={filtered} bodyPart={bodyPart} />;
 }

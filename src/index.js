@@ -34,7 +34,6 @@ const router = createBrowserRouter([
       { path: "/histories", element: <AllHistories /> },
       { path: "/sportHistories", element: <AllSportHistories /> },
       { path: "/maxWeightHistories", element: <AllMaxWeightHistories /> },
-      // { path: "/sports", element: <AllSports /> },
       {
         path: "/products/new",
         element: (

@@ -5,7 +5,7 @@ export default function SportHistoryCard({
 }) {
   return (
     <div
-      className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mb-4 p-4 bg-sky-100'
+      className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden mb-4 p-4 bg-sky-100'
     >
       <div className='flex justify-end'>
         <span className='text-lg font-medium bg-green-500 text-white rounded px-2 py-2 border-blue-700 mr-2'>

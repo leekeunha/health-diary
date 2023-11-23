@@ -71,8 +71,7 @@ export async function addBodyPart(bodyPartName) {
   return set(bodyPartRef, bodyPartData);
 }
 
-export async function addSport(bodyPartId, sportName) {
-  const sportId = uuid();
+export async function addSport(bodyPartId, sportId, sportName) {
   const sportData = {
     id: sportId,
     name: sportName,
@@ -80,6 +79,11 @@ export async function addSport(bodyPartId, sportName) {
 
   return set(ref(database, `sports/${bodyPartId}/${sportId}`), sportData);
 }
+
+export async function deleteSport(bodyPartId, sportId) {
+  return remove(ref(database, `sports/${bodyPartId}/${sportId}`));
+}
+
 
 export async function getProducts() {
   return get(ref(database, 'products')).then((snapshot) => {

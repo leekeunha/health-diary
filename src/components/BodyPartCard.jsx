@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useBodyPartContext } from '../context/BodyPartContext';
+//import { useBodyPartContext } from '../context/BodyPartContext';
 
 export default function BodyPartCard({
   bodyPart,
@@ -8,13 +8,13 @@ export default function BodyPartCard({
   redirectUrl,
 }) {
   const navigate = useNavigate();
-  const { setSelectedBodyPart } = useBodyPartContext();
-
+  //const { setSelectedBodyPart } = useBodyPartContext();
+  console.log({ redirectUrl });
   return (
     <li
       onClick={() => {
-        setSelectedBodyPart(bodyPart);
-        navigate(`${redirectUrl}`);
+        //setSelectedBodyPart(bodyPart);
+        navigate(`${redirectUrl}`, { state: { bodyPart } });
       }}
       className='bg-sky-100 mt-4 flex justify-center items-center h-[140px] rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105'
     >

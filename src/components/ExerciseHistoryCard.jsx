@@ -34,7 +34,7 @@ export default function ExerciseHistoryCard({
 
   return (
     <div
-      className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105 mb-4 p-4'
+      className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden mb-4 p-4'
     // onClick={() => navigate(`/historyDetail`)}
 
     >

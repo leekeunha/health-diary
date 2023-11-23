@@ -10,7 +10,7 @@ import { format } from 'date-fns';
 import { useForm, FormProvider } from 'react-hook-form';
 import ConfirmationModal from './ui/ConfimationModal';
 
-export default function SportSets({ filtered }) {
+export default function SportSets({ filtered, bodyPart }) {
   const [date, setDate] = useState(new Date());
   const { selectedBodyPart } = useBodyPartContext();
   const { uid } = useAuthContext();
@@ -27,7 +27,9 @@ export default function SportSets({ filtered }) {
     const exerciseDateFormatted = format(date, 'yyyyMMddHH');
 
     try {
-      await saveExerciseSets(uid, exerciseDateFormatted, selectedBodyPart.id, formData);
+      //console.log(bodyPart);
+      //debugger;
+      await saveExerciseSets(uid, exerciseDateFormatted, bodyPart.id, formData);
       setIsModalOpen(true); // Open the modal after saving
     } catch (error) {
       console.error('저장 중 에러가 발생했습니다:', error);
