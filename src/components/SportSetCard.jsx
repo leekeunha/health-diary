@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SetInput from './SetInput';
 import { useFormContext } from 'react-hook-form';
 

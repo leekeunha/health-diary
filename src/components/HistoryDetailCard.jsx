@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getExerciseNameByChildId } from '../api/firebase';
 export default function HistoryDetailCard({
   historyDetail,
   historyDetail: { id, sets },
 }) {
   const [exerciseName, setExerciseName] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchExerciseName = async () => {
