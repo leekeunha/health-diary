@@ -27,7 +27,7 @@ export default function AddTodo({ bodyPart, onAdd }) {
                 value={text}
                 onChange={handleChange}
             />
-            <Button text="추가" className={'m-1 w-[100px] h-[3rem]'}></Button>
+            <Button text="추가" className={'m-1 w-[100px] h-[3rem]'} disabled={text.trim().length === 0}></Button>
         </form>
     );
 }
