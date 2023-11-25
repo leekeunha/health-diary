@@ -11,6 +11,7 @@ import AllSports from "./pages/AllSports";
 import AllHistories from "./pages/AllHistories";
 import AllSportsSets from "./pages/AllSportsSets";
 import AllMaxWeightHistories from "./pages/AllMaxWeightHistories";
+import AllHistoryDetails from "./pages/AllHistoryDetails.jsx";
 import ProductDetail from "./pages/ProductDetail";
 import NewProduct from "./pages/NewProduct";
 import MyCart from "./pages/MyCart";
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: "/histories", element: <AllHistories /> },
       { path: "/sportHistories", element: <AllSportHistories /> },
       { path: "/maxWeightHistories", element: <AllMaxWeightHistories /> },
+      { path: "/historyDetails", element: <AllHistoryDetails /> },
       {
         path: "/products/new",
         element: (

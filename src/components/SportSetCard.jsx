@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import SetInput from './SetInput';
 import { useFormContext } from 'react-hook-form';
 
-export default function SportSetCard({ sport }) {
-  const [setCount, setSetCount] = useState(3);
+export default function SportSetCard({ sport, setCount, updateSetCount }) {
+  //const [setCount, setSetCount] = useState(3);
   const { setValue } = useFormContext();
 
   useEffect(() => {
@@ -11,7 +11,11 @@ export default function SportSetCard({ sport }) {
       setValue(`${sport.id}.sets.${i}.weight`, '');
       setValue(`${sport.id}.sets.${i}.reps`, '');
     }
-  }, [sport, setCount, setValue]);
+  }, [sport, setCount, setValue]); // Update dependencies
+
+  const handleSetCountChange = (e) => {
+    updateSetCount(sport.id, parseInt(e.target.value));
+  };
 
   const renderSetInputs = () => {
     let inputs = [];
@@ -28,7 +32,7 @@ export default function SportSetCard({ sport }) {
         <select
           name="setCount"
           value={setCount}
-          onChange={e => setSetCount(e.target.value)}
+          onChange={handleSetCountChange}
           className="ml-3 p-2 border rounded text-lg"
         >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(number => (

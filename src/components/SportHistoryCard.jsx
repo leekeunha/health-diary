@@ -45,4 +45,3 @@ function getFormattedDateWithWeekday(dateStr) {
 
   return date.toLocaleString('ko-KR', options);
 }
-

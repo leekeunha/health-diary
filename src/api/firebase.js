@@ -118,6 +118,70 @@ export async function getExerciseHistories(uid) {
   });
 }
 
+export async function getExerciseNameByChildId(childId) {
+  // 최상위 'sports' 노드부터 탐색을 시작하여 모든 하위 노드를 확인합니다.
+  const sportsPath = 'sports';
+  try {
+    const sportsSnapshot = await get(ref(database, sportsPath));
+    if (sportsSnapshot.exists()) {
+      const sportsData = sportsSnapshot.val();
+      // 모든 하위 노드를 순회하면서 해당 id를 가진 노드를 찾습니다.
+      for (const bodyPartId in sportsData) {
+        for (const exerciseId in sportsData[bodyPartId]) {
+          const exerciseData = sportsData[bodyPartId][exerciseId];
+          if (exerciseData.id === childId) {
+            return exerciseData.name; // 일치하는 id를 찾으면 name을 반환합니다.
+          }
+        }
+      }
+      console.log('No exercise with the given id found');
+      return null;
+    } else {
+      console.log('No data available in the sports path');
+      return null;
+    }
+  } catch (error) {
+    console.error('Firebase getExerciseNameByChildId error: ', error);
+    throw new Error(`Unable to fetch exercise name by child id: ${error.message}`);
+  }
+}
+
+
+
+export async function getfetchHistoryDetails(uid, date) {
+  //debugger;
+  //console.log({ date });
+  return get(ref(database, `exerciseHistory/${uid}/${date}`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      const userData = snapshot.val();
+      const formattedData = [];
+
+      // Convert each key-value pair in userData into an object and add it to the array
+      Object.keys(userData).forEach(bodyPartId => {
+        Object.keys(userData[bodyPartId]).forEach(exerciseId => {
+          // Retrieve the sets for the current exercise and sort them by 'no'
+          const sets = Object.values(userData[bodyPartId][exerciseId]).sort((a, b) => {
+            return a.no - b.no; // 오름차순 정렬
+          });
+
+          formattedData.push({
+            id: exerciseId,
+            sets: sets
+          });
+        });
+      });
+
+      console.log('getfetchHistoryDetails : ', JSON.stringify(formattedData));
+      //debugger;
+      return formattedData;
+    }
+    return [];
+  });
+}
+
+
+
+
 function formatDate(dateStr) {
   //console.log({ dateStr });
   const year = dateStr.substring(0, 4);
@@ -148,7 +212,7 @@ export async function getSportHistories(userId, exerciseId) {
               // weight가 빈 문자열이 아닐 경우에만 처리
               if (set.weight.trim() !== "") {
                 const weight = parseInt(set.weight, 10);
-                console.log({ weight });
+                //console.log({ weight });
 
                 if (!isNaN(weight) && (!maxSetsByDate[date] || weight > maxSetsByDate[date].weight)) {
                   maxSetsByDate[date] = { date, reps: set.reps, weight };
@@ -197,7 +261,7 @@ export async function getBodyPartById(id) {
   });
 }
 
-export async function getExerciseNameById(bodyPartId, exerciseId) {
+export async function getExerciseNameByIds(bodyPartId, exerciseId) {
   const sportPath = `sports/${bodyPartId}/${exerciseId}`;
   try {
 
