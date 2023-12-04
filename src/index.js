@@ -7,7 +7,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import AllBodyParts from "./pages/AllBodyParts";
 import AllSports from "./pages/AllSports";
-import AllHistories from "./pages/AllHistories";
+import AllExerciseHistories from "./pages/AllExerciseHistories.jsx";
 import AllSportsSets from "./pages/AllSportsSets";
 import AllMaxWeightHistories from "./pages/AllMaxWeightHistories";
 import AllHistoryDetails from "./pages/AllHistoryDetails.jsx";
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       { path: "/sports", element: <AllSports /> },
       { path: "/sportsForMaxWeight", element: <AllSportsForMaxWeight /> },
       { path: "/sets", element: <AllSportsSets /> },
-      { path: "/histories", element: <AllHistories /> },
+      { path: "/histories", element: <AllExerciseHistories /> },
       { path: "/sportHistories", element: <AllSportHistories /> },
       { path: "/maxWeightHistories", element: <AllMaxWeightHistories /> },
       { path: "/historyDetails", element: <AllHistoryDetails /> },

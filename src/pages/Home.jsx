@@ -3,6 +3,7 @@ import Banner from '../components/Banner';
 import MainMenus from '../components/MainMenus';
 import { useAuthContext } from '../context/AuthContext';
 import Button from '../components/ui/Button';
+
 export default function Home() {
   const { user, login } = useAuthContext();
   return (
