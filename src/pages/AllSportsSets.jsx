@@ -6,9 +6,5 @@ export default function AllSportsSets() {
   const location = useLocation();
   const { filtered, bodyPart } = location.state || {};
 
-  // useEffect(() => {
-
-  // }, [filtered]);
-
   return <SportSets filtered={filtered} bodyPart={bodyPart} />;
 }

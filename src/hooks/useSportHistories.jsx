@@ -10,8 +10,8 @@ export default function useSportHistories(sport) {
     ['sportHistories', uid, sportId],
     () => fetchSportHistories(uid, sportId),
     {
-      staleTime: 1000 * 60, // 캐시된 데이터 유지 시간 (1분)
-      enabled: !!uid && !!sportId // uid와 sportId가 모두 유효할 때만 쿼리 실행
+      staleTime: 1000 * 60,
+      enabled: !!uid && !!sportId
     }
   );
 

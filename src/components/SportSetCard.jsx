@@ -3,7 +3,6 @@ import SetInput from './SetInput';
 import { useFormContext } from 'react-hook-form';
 
 export default function SportSetCard({ sport, setCount, updateSetCount }) {
-  //const [setCount, setSetCount] = useState(3);
   const { setValue } = useFormContext();
 
   useEffect(() => {
@@ -11,7 +10,7 @@ export default function SportSetCard({ sport, setCount, updateSetCount }) {
       setValue(`${sport.id}.sets.${i}.weight`, '');
       setValue(`${sport.id}.sets.${i}.reps`, '');
     }
-  }, [sport, setCount, setValue]); // Update dependencies
+  }, [sport, setCount, setValue]);
 
   const handleSetCountChange = (e) => {
     updateSetCount(sport.id, parseInt(e.target.value));
@@ -35,7 +34,7 @@ export default function SportSetCard({ sport, setCount, updateSetCount }) {
           onChange={handleSetCountChange}
           className="ml-3 p-2 border rounded text-lg"
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(number => (
+          {setNumers.map(number => (
             <option key={number} value={number}>
               {number} sets
             </option>
@@ -46,3 +45,6 @@ export default function SportSetCard({ sport, setCount, updateSetCount }) {
     </div>
   );
 }
+
+
+const setNumers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

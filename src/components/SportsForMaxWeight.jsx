@@ -2,22 +2,11 @@ import React, { useEffect, useState } from 'react';
 import SportCardForMaxWeight from './SportCardForMaxWeight';
 import { useLocation } from 'react-router-dom';
 import useSports from '../hooks/useSports';
-//import { useBodyPartContext } from '../context/BodyPartContext';
 
 export default function SportsForMaxWeight() {
 
-    // import React from 'react';
-    // import { useLocation } from 'react-router-dom';
-    // import Sports from '../components/Sports';
-
-    // export default function AllSports() {
     const location = useLocation();
     const bodyPart = location.state?.bodyPart;
-    //   return <Sports bodyPart={bodyPart} />;
-    // }
-
-
-    //const { selectedBodyPart } = useBodyPartContext();
     const {
         sportsQuery: { isLoading, error, data: fetchedSports },
     } = useSports(bodyPart.id);
@@ -29,7 +18,6 @@ export default function SportsForMaxWeight() {
             setSports(fetchedSports);
         }
     }, [fetchedSports]);
-
 
     return (
         <>

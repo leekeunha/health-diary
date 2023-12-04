@@ -61,7 +61,7 @@ export async function addNewProduct(product, image) {
 }
 
 export async function addBodyPart(bodyPartName) {
-  const bodyPartId = uuid(); // Generate a unique ID for the new body part
+  const bodyPartId = uuid();
   const bodyPartData = {
     id: bodyPartId,
     name: bodyPartName
@@ -119,18 +119,16 @@ export async function getExerciseHistories(uid) {
 }
 
 export async function getExerciseNameByChildId(childId) {
-  // 최상위 'sports' 노드부터 탐색을 시작하여 모든 하위 노드를 확인합니다.
   const sportsPath = 'sports';
   try {
     const sportsSnapshot = await get(ref(database, sportsPath));
     if (sportsSnapshot.exists()) {
       const sportsData = sportsSnapshot.val();
-      // 모든 하위 노드를 순회하면서 해당 id를 가진 노드를 찾습니다.
       for (const bodyPartId in sportsData) {
         for (const exerciseId in sportsData[bodyPartId]) {
           const exerciseData = sportsData[bodyPartId][exerciseId];
           if (exerciseData.id === childId) {
-            return exerciseData.name; // 일치하는 id를 찾으면 name을 반환합니다.
+            return exerciseData.name;
           }
         }
       }
@@ -149,19 +147,16 @@ export async function getExerciseNameByChildId(childId) {
 
 
 export async function getfetchHistoryDetails(uid, date) {
-  //debugger;
-  //console.log({ date });
   return get(ref(database, `exerciseHistory/${uid}/${date}`)).then((snapshot) => {
     if (snapshot.exists()) {
       const userData = snapshot.val();
       const formattedData = [];
 
-      // Convert each key-value pair in userData into an object and add it to the array
       Object.keys(userData).forEach(bodyPartId => {
         Object.keys(userData[bodyPartId]).forEach(exerciseId => {
-          // Retrieve the sets for the current exercise and sort them by 'no'
+
           const sets = Object.values(userData[bodyPartId][exerciseId]).sort((a, b) => {
-            return a.no - b.no; // 오름차순 정렬
+            return a.no - b.no;
           });
 
           formattedData.push({
@@ -172,7 +167,7 @@ export async function getfetchHistoryDetails(uid, date) {
       });
 
       console.log('getfetchHistoryDetails : ', JSON.stringify(formattedData));
-      //debugger;
+
       return formattedData;
     }
     return [];
@@ -183,7 +178,6 @@ export async function getfetchHistoryDetails(uid, date) {
 
 
 function formatDate(dateStr) {
-  //console.log({ dateStr });
   const year = dateStr.substring(0, 4);
   const month = dateStr.substring(4, 6);
   const day = dateStr.substring(6, 8);
@@ -192,8 +186,6 @@ function formatDate(dateStr) {
 }
 
 export async function getSportHistories(userId, exerciseId) {
-  console.log({ userId });
-  console.log({ exerciseId });
   const exerciseHistoryRef = ref(database, `exerciseHistory/${userId}`);
 
   try {
@@ -209,10 +201,8 @@ export async function getSportHistories(userId, exerciseId) {
           const exerciseSets = exerciseData[exerciseId];
           if (exerciseSets) {
             for (const set of Object.values(exerciseSets)) {
-              // weight가 빈 문자열이 아닐 경우에만 처리
               if (set.weight.trim() !== "") {
                 const weight = parseInt(set.weight, 10);
-                //console.log({ weight });
 
                 if (!isNaN(weight) && (!maxSetsByDate[date] || weight > maxSetsByDate[date].weight)) {
                   maxSetsByDate[date] = { date, reps: set.reps, weight };
@@ -235,12 +225,6 @@ export async function getSportHistories(userId, exerciseId) {
   }
 }
 
-
-
-
-
-
-
 export async function getBodyParts() {
   return get(ref(database, 'bodyParts')).then((snapshot) => {
     if (snapshot.exists()) {
@@ -251,10 +235,8 @@ export async function getBodyParts() {
 }
 
 export async function getBodyPartById(id) {
-  // return get(ref(database, `exerciseHistory/${uid}`)).then((snapshot) => {
   return get(ref(database, `bodyParts/${id}`)).then((snapshot) => {
     if (snapshot.exists()) {
-      //console.log('getBodyPartById', Object.values(snapshot.val()));
       return Object.values(snapshot.val());
     }
     return [];
@@ -266,12 +248,9 @@ export async function getExerciseNameByIds(bodyPartId, exerciseId) {
   try {
 
     const snapshot = await get(ref(database, sportPath));
-    //console.log('snapshot: ', snapshot);
     if (snapshot.exists()) {
-      // If the data at the path is an object with names as keys, we extract the keys
       const exerciseNames = snapshot.val();
 
-      // Assuming that the structure is an object with the names as keys
       return Object.keys(exerciseNames).map(key => exerciseNames[key]);
     } else {
       console.log('No data available for: ', sportPath);
@@ -318,17 +297,16 @@ export async function removeFromCart(userId, productId) {
 
 export async function saveExerciseSets(userId, exerciseDateFormatted, exerciseBodyPartId, exercises) {
   const exerciseHistoryData = {};
-  //console.log('let exercises =', JSON.stringify(exercises));
 
   Object.entries(exercises).forEach(([sportId, exercise]) => {
     const setsData = {};
 
     exercise.sets.forEach((set, index) => {
-      const setId = uuid(); // Generate a unique ID for each set
+      const setId = uuid();
       setsData[setId] = {
         ...set,
         id: setId,
-        no: index + 1 // Set number
+        no: index + 1
       };
     });
 
@@ -338,5 +316,3 @@ export async function saveExerciseSets(userId, exerciseDateFormatted, exerciseBo
   const dbRef = ref(database, `exerciseHistory/${userId}/${exerciseDateFormatted}/${exerciseBodyPartId}`);
   return set(dbRef, exerciseHistoryData);
 }
-
-

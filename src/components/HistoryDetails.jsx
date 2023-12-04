@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-//import ProductCard from './ProductCard'
 import HistoryDetailCard from './HistoryDetailCard'
 import { useAuthContext } from '../context/AuthContext';
 import useHistoryDetails from '../hooks/useHistoryDetails';
@@ -40,14 +39,12 @@ export default function HistoryDetails({ date }) {
 
 
 function getFormattedDateWithWeekday(dateStr) {
-  var year = dateStr.substring(0, 4);
-  var month = dateStr.substring(4, 6);
-  var day = dateStr.substring(6, 8);
-  var hour = dateStr.substring(8, 10);
-
-  var date = new Date(year, month - 1, day, hour);
-
-  var options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'long' };
+  let year = dateStr.substring(0, 4);
+  let month = dateStr.substring(4, 6);
+  let day = dateStr.substring(6, 8);
+  let hour = dateStr.substring(8, 10);
+  let date = new Date(year, month - 1, day, hour);
+  let options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'long' };
 
   return date.toLocaleString('ko-KR', options);
 }

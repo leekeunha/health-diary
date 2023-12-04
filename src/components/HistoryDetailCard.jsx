@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getExerciseNameByChildId } from '../api/firebase';
 export default function HistoryDetailCard({
-  historyDetail,
   historyDetail: { id, sets },
 }) {
   const [exerciseName, setExerciseName] = useState('');

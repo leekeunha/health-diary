@@ -5,7 +5,6 @@ import useSportHistories from '../hooks/useSportHistories';
 export default function SportHistories({ sport }) {
   const { sportHistoriesQuery: { isLoading, error, data: sportHistories } } = useSportHistories(sport);
 
-
   return (
     <>
       {isLoading && <p>Loading...</p>}

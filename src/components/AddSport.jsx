@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styles from './AddTodo.module.css';
+import styles from './AddSport.module.css';
 import Button from './ui/Button';
 import { addSport } from '../api/firebase';
 
-export default function AddTodo({ bodyPart, onAdd }) {
+export default function AddSport({ bodyPart, onAdd }) {
     const [text, setText] = useState('');
     const handleChange = (e) => setText(e.target.value);
     const handleSubmit = async (e) => {

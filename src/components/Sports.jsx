@@ -3,14 +3,11 @@ import SportCard from './SportCard';
 import useSports from '../hooks/useSports';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
-//import { useBodyPartContext } from '../context/BodyPartContext';
-import AddTodo from './AddTodo';
+import AddSport from './AddSport';
 import { deleteSport } from '../api/firebase';
 export default function Sports({ bodyPart }) {
 
   const navigate = useNavigate();
-  // const { selectedBodyPart } = useBodyPartContext();
-  // console.log({ selectedBodyPart });
   const {
     sportsQuery: { isLoading, error, data: fetchedSports },
   } = useSports(bodyPart.id);
@@ -26,7 +23,6 @@ export default function Sports({ bodyPart }) {
       setSports(sportsWithChecked);
     }
 
-    //console.log('sports', sports);
   }, [fetchedSports]);
 
   const handleUpdate = (updated) => {
@@ -41,7 +37,6 @@ export default function Sports({ bodyPart }) {
   const handleAdd = (sport) => setSports([...sports, sport]);
 
   useEffect(() => {
-    //console.log('Updated sports state:', sports);
   }, [sports]);
 
   const filtered = getFilteredItems(sports, true);
@@ -81,9 +76,7 @@ export default function Sports({ bodyPart }) {
             <SportCard key={sport.id} sport={sport} onUpdate={handleUpdate} onDelete={handleDelete} />
           ))}
       </ul >
-
-      <AddTodo bodyPart={bodyPart} onAdd={handleAdd}></AddTodo>
-
+      <AddSport bodyPart={bodyPart} onAdd={handleAdd}></AddSport>
     </>
   );
 }

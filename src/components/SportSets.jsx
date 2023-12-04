@@ -3,7 +3,6 @@ import SportSetCard from './SportSetCard';
 import Button from './ui/Button';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-//import { useBodyPartContext } from '../context/BodyPartContext';
 import { useAuthContext } from '../context/AuthContext';
 import { saveExerciseSets } from '../api/firebase';
 import { format } from 'date-fns';
@@ -12,7 +11,6 @@ import ConfirmationModal from './ui/ConfimationModal';
 
 export default function SportSets({ filtered, bodyPart }) {
   const [date, setDate] = useState(new Date());
-  //const { selectedBodyPart } = useBodyPartContext();
   const { uid } = useAuthContext();
   const methods = useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,9 +35,8 @@ export default function SportSets({ filtered, bodyPart }) {
 
     for (const sportId in formData) {
       const sportData = formData[sportId];
-      const selectedSetCount = setCounts[sportId] || 3; // 선택된 세트 수, 기본값 3
+      const selectedSetCount = setCounts[sportId] || 3;
 
-      // 선택된 세트 수에 맞게 데이터 필터링
       let setsData = [];
       for (let i = 0; i < selectedSetCount; i++) {
         if (sportData.sets[i]) {
@@ -54,7 +51,6 @@ export default function SportSets({ filtered, bodyPart }) {
     }
 
     try {
-      // 서버에 filteredFormData를 사용하여 저장
       await saveExerciseSets(uid, exerciseDateFormatted, bodyPart.id, filteredFormData);
       setIsModalOpen(true);
     } catch (error) {
@@ -87,7 +83,7 @@ export default function SportSets({ filtered, bodyPart }) {
                 <SportSetCard
                   key={sport.id}
                   sport={sport}
-                  setCount={setCounts[sport.id] || 3} // Default to 3 if not set
+                  setCount={setCounts[sport.id] || 3}
                   updateSetCount={updateSetCount}
                 />
               ))}

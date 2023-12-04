@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import styles from './Todo.module.css';
+import styles from './Sport.module.css';
 
 export default function SportCard({
   sport,
@@ -8,12 +8,10 @@ export default function SportCard({
   onUpdate,
   onDelete
 }) {
-  // const navigate = useNavigate();
   const handleChange = (e) => {
     const checked = e.target.checked ? true : false;
 
     onUpdate({ ...sport, checked })
-    //console.log('{ ...sport, checked }', { ...sport, checked });
   }
 
   const handleDelete = () => onDelete(sport);
@@ -37,7 +35,6 @@ export default function SportCard({
           <FaTrashAlt />
         </button>
       </span>
-      {/* {checked} */}
     </li>
   );
 }

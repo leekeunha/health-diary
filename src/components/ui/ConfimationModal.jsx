@@ -5,8 +5,8 @@ const ConfirmationModal = ({ isOpen, onClose, message }) => {
     const navigate = useNavigate();
 
     const handleConfirm = () => {
-        onClose(); // Close the modal
-        navigate('/'); // Navigate to the Home component
+        onClose();
+        navigate('/');
     };
 
     if (!isOpen) return null;

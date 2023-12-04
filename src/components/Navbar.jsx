@@ -15,7 +15,6 @@ export default function Navbar() {
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
         {user && <User user={user} />}
-        {/* {!user && <Button text={'Login'} onClick={login} />} */}
         {user && <Button text={'Logout'} onClick={logout} />}
       </nav>
     </header>

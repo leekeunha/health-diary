@@ -14,7 +14,7 @@ export default function ExerciseHistoryCard({
     const fetchDetails = async () => {
       let parts = [];
       let sportsByBodyPart = {};
-      //console.log({ history });
+
       for (const bodyPartId in history) {
         if (bodyPartId !== 'date') {
           const bodyPart = await getBodyPartById(bodyPartId);
@@ -27,9 +27,6 @@ export default function ExerciseHistoryCard({
         }
       }
 
-      console.log({ parts });
-      console.log({ sportsByBodyPart });
-      console.log(history.date);
       let dateForRedirect = getDateForRedirect(history.date);
       setDate(dateForRedirect);
       setBodyParts(parts);
@@ -39,16 +36,14 @@ export default function ExerciseHistoryCard({
     fetchDetails();
   }, [history]);
 
-  function test() {
-    //console.log('date: ', date);
-    //debugger;
+  function NavagateToHistoryDeatil() {
     navigate(`/historyDetails`, { state: { date } });
   }
 
   return (
     <div
-      className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden mb-4 p-4'
-      onClick={() => test()}
+      className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden mb-4 p-4 cursor-pointer'
+      onClick={() => NavagateToHistoryDeatil()}
     >
       <div className='flex justify-between'>
         <span className='text-xl font-bold bg-green-500 text-white rounded px-2 py-2 my-2'>
@@ -77,20 +72,17 @@ export default function ExerciseHistoryCard({
   );
 }
 
-
 function getFormattedDateWithWeekday(dateStr) {
   const [year, month, day, time] = dateStr.split('.');
   const date = new Date(`${year}-${month}-${day}`);
-  const weekday = date.toLocaleString('ko-KR', { weekday: 'long' }); // Adjust 'en-US' to your locale if needed
+  const weekday = date.toLocaleString('ko-KR', { weekday: 'long' });
   return `${year}.${month}.${day}.${time} ${weekday}`;
 }
 
 function getDateForRedirect(dateStr) {
-  // 먼저 문자열에서 점(.)과 콜론(:)을 제거합니다.
-  let formattedString = dateStr.replace(/[.:]/g, '');
 
-  // 그 후 연도, 월, 일, 그리고 시간 부분(첫 두 자리)만 추출합니다.
-  formattedString = formattedString.substring(0, 10); // '2023112217' 형태 추출
+  let formattedString = dateStr.replace(/[.:]/g, '');
+  formattedString = formattedString.substring(0, 10);
 
   return formattedString;
 }
