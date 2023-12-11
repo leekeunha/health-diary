@@ -9,7 +9,9 @@ export default function ExerciseHistories() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [filter, setFilter] = useState('all');
   const itemsPerPage = 5;
+
   useEffect(() => {
     setIsLoading(true);
     getExerciseHistories(uid)
@@ -25,12 +27,43 @@ export default function ExerciseHistories() {
 
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = exerciseHistories.slice(indexOfFirstItem, indexOfLastItem);
+
+  const currentFilteredHistories = filter === 'all'
+    ? exerciseHistories
+    : exerciseHistories.filter(history => history.hasOwnProperty(filter));
+
+  const currentItems = currentFilteredHistories.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
+  const handleFilterChange = newFilter => {
+    setFilter(newFilter);
+    setCurrentPage(0);
+  };
+
   return (
     <>
+      <div className='flex justify-center my-4'>
+        <button onClick={() => handleFilterChange('all')} className={`mx-2 px-4 py-2 border rounded ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+          전체
+        </button>
+        <button onClick={() => handleFilterChange('231670b4-257c-4eca-9823-31093180dc35')} className={`mx-2 px-4 py-2 border rounded ${filter === '231670b4-257c-4eca-9823-31093180dc35' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+          가슴
+        </button>
+        <button onClick={() => handleFilterChange('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9')} className={`mx-2 px-4 py-2 border rounded ${filter === '8b0c3d0f-871a-41fa-a245-a8ef6bd460b9' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+          등
+        </button>
+        <button onClick={() => handleFilterChange('880d8809-9bb4-4c70-b51f-8c85be2d2097')} className={`mx-2 px-4 py-2 border rounded ${filter === '880d8809-9bb4-4c70-b51f-8c85be2d2097' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+          어깨
+        </button>
+        <button onClick={() => handleFilterChange('91a226f7-e93f-4a40-9349-2c23db212d32')} className={`mx-2 px-4 py-2 border rounded ${filter === '91a226f7-e93f-4a40-9349-2c23db212d32' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+          팔
+        </button>
+        <button onClick={() => handleFilterChange('08710185-8618-4f40-9f8a-5350bb0f0553')} className={`mx-2 px-4 py-2 border rounded ${filter === '08710185-8618-4f40-9f8a-5350bb0f0553' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+          다리
+        </button>
+      </div>
+
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       <ul className='mt-10 flex flex-col'>
@@ -39,9 +72,8 @@ export default function ExerciseHistories() {
         ))}
       </ul>
       <div className="flex justify-between items-center mt-4">
-
         <div className='flex justify-center flex-grow'>
-          {Array.from({ length: Math.ceil(exerciseHistories.length / itemsPerPage) }, (_, i) => (
+          {Array.from({ length: Math.ceil(currentFilteredHistories.length / itemsPerPage) }, (_, i) => (
             <button
               key={i}
               onClick={() => paginate(i)}
@@ -52,7 +84,7 @@ export default function ExerciseHistories() {
           ))}
         </div>
         <div className="text-sm text-gray-700">
-          총 데이터 개수: {exerciseHistories.length}
+          Showing {currentItems.length} out of {currentFilteredHistories.length} entries
         </div>
       </div>
     </>
