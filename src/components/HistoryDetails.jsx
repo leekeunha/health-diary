@@ -14,7 +14,6 @@ export default function HistoryDetails({ date }) {
   useEffect(() => {
     if (uid) {
       setHistoryDetails(data);
-      //console.log('historyDetails: ', JSON.stringify(data));
     }
   }, [uid, date, data]);
 
@@ -36,7 +35,6 @@ export default function HistoryDetails({ date }) {
     </>
   );
 }
-
 
 function getFormattedDateWithWeekday(dateStr) {
   let year = dateStr.substring(0, 4);

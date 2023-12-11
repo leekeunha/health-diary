@@ -47,19 +47,19 @@ export default function ExerciseHistories() {
         <button onClick={() => handleFilterChange('all')} className={`mx-2 px-4 py-2 border rounded ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
           전체
         </button>
-        <button onClick={() => handleFilterChange('231670b4-257c-4eca-9823-31093180dc35')} className={`mx-2 px-4 py-2 border rounded ${filter === '231670b4-257c-4eca-9823-31093180dc35' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+        <button onClick={() => handleFilterChange(CHEST)} className={`mx-2 px-4 py-2 border rounded ${filter === '231670b4-257c-4eca-9823-31093180dc35' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
           가슴
         </button>
-        <button onClick={() => handleFilterChange('8b0c3d0f-871a-41fa-a245-a8ef6bd460b9')} className={`mx-2 px-4 py-2 border rounded ${filter === '8b0c3d0f-871a-41fa-a245-a8ef6bd460b9' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+        <button onClick={() => handleFilterChange(BACK)} className={`mx-2 px-4 py-2 border rounded ${filter === '8b0c3d0f-871a-41fa-a245-a8ef6bd460b9' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
           등
         </button>
-        <button onClick={() => handleFilterChange('880d8809-9bb4-4c70-b51f-8c85be2d2097')} className={`mx-2 px-4 py-2 border rounded ${filter === '880d8809-9bb4-4c70-b51f-8c85be2d2097' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+        <button onClick={() => handleFilterChange(SHOULDER)} className={`mx-2 px-4 py-2 border rounded ${filter === '880d8809-9bb4-4c70-b51f-8c85be2d2097' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
           어깨
         </button>
-        <button onClick={() => handleFilterChange('91a226f7-e93f-4a40-9349-2c23db212d32')} className={`mx-2 px-4 py-2 border rounded ${filter === '91a226f7-e93f-4a40-9349-2c23db212d32' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+        <button onClick={() => handleFilterChange(ARM)} className={`mx-2 px-4 py-2 border rounded ${filter === '91a226f7-e93f-4a40-9349-2c23db212d32' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
           팔
         </button>
-        <button onClick={() => handleFilterChange('08710185-8618-4f40-9f8a-5350bb0f0553')} className={`mx-2 px-4 py-2 border rounded ${filter === '08710185-8618-4f40-9f8a-5350bb0f0553' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
+        <button onClick={() => handleFilterChange(LEG)} className={`mx-2 px-4 py-2 border rounded ${filter === '08710185-8618-4f40-9f8a-5350bb0f0553' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
           다리
         </button>
       </div>
@@ -90,3 +90,9 @@ export default function ExerciseHistories() {
     </>
   );
 }
+
+export const CHEST = '231670b4-257c-4eca-9823-31093180dc35';
+export const BACK = '8b0c3d0f-871a-41fa-a245-a8ef6bd460b9';
+export const SHOULDER = '880d8809-9bb4-4c70-b51f-8c85be2d2097';
+export const ARM = '91a226f7-e93f-4a40-9349-2c23db212d32';
+export const LEG = '08710185-8618-4f40-9f8a-5350bb0f0553';

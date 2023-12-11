@@ -11,7 +11,6 @@ export default function SportHistories({ sport }) {
 
   console.log('sportHistories: ', JSON.stringify(sportHistories));
 
-  // 날짜 포맷을 변경하는 함수 (YYYYMMDDHH 형식을 JS Date 객체로 변환)
   const formatSportHistories = (histories) => {
     return histories.map((history) => ({
       ...history,
