@@ -8,13 +8,12 @@ export default function ExerciseHistories() {
   const [exerciseHistories, setExerciseHistories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5;
   useEffect(() => {
     setIsLoading(true);
     getExerciseHistories(uid)
       .then(data => {
-        console.log('getExerciseHistories: ', data);
-        console.log('getExerciseHistories: ', JSON.stringify(data));
         setExerciseHistories(data);
         setIsLoading(false);
       })
@@ -24,15 +23,33 @@ export default function ExerciseHistories() {
       });
   }, [uid]);
 
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = exerciseHistories.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       <ul className='mt-10 flex flex-col'>
-        {exerciseHistories.map((history, index) => (
+        {currentItems.map((history, index) => (
           <ExerciseHistoryCard key={index} history={history} />
         ))}
       </ul>
+      <div className='flex justify-center mt-4'>
+        {Array.from({ length: Math.ceil(exerciseHistories.length / itemsPerPage) }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => paginate(i)}
+            className={`mx-1 px-3 py-1 border rounded ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'}`}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
     </>
   );
+
 }

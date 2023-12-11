@@ -98,7 +98,6 @@ export async function getExerciseHistories(uid) {
   return get(ref(database, `exerciseHistory/${uid}`)).then((snapshot) => {
     if (snapshot.exists()) {
       const userData = snapshot.val();
-      //console.log('userData : ', JSON.stringify(userData));
 
       return Object.entries(userData).map(([date, bodyParts]) => {
         const formattedDate = formatDate(date);

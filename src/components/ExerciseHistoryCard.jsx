@@ -36,14 +36,14 @@ export default function ExerciseHistoryCard({
     fetchDetails();
   }, [history]);
 
-  function NavagateToHistoryDeatil() {
+  function NavagateToHistoryDetail() {
     navigate(`/historyDetails`, { state: { date } });
   }
 
   return (
     <div
       className='bg-sky-100 h-auto rounded-lg shadow-md overflow-hidden mb-4 p-4 cursor-pointer'
-      onClick={() => NavagateToHistoryDeatil()}
+      onClick={() => NavagateToHistoryDetail()}
     >
       <div className='flex justify-between'>
         <span className='text-xl font-bold bg-green-500 text-white rounded px-2 py-2 my-2'>
