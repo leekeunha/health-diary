@@ -38,18 +38,23 @@ export default function ExerciseHistories() {
           <ExerciseHistoryCard key={index} history={history} />
         ))}
       </ul>
-      <div className='flex justify-center mt-4'>
-        {Array.from({ length: Math.ceil(exerciseHistories.length / itemsPerPage) }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => paginate(i)}
-            className={`mx-1 px-3 py-1 border rounded ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'}`}
-          >
-            {i + 1}
-          </button>
-        ))}
+      <div className="flex justify-between items-center mt-4">
+
+        <div className='flex justify-center flex-grow'>
+          {Array.from({ length: Math.ceil(exerciseHistories.length / itemsPerPage) }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => paginate(i)}
+              className={`mx-1 px-3 py-1 border rounded ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'}`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+        <div className="text-sm text-gray-700">
+          총 데이터 개수: {exerciseHistories.length}
+        </div>
       </div>
     </>
   );
-
 }
