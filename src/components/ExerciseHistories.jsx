@@ -13,7 +13,8 @@ export default function ExerciseHistories() {
     setIsLoading(true);
     getExerciseHistories(uid)
       .then(data => {
-        console.log('exercise Histories : ', JSON.stringify(data));
+        console.log('getExerciseHistories: ', data);
+        console.log('getExerciseHistories: ', JSON.stringify(data));
         setExerciseHistories(data);
         setIsLoading(false);
       })

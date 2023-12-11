@@ -14,7 +14,7 @@ export default function HistoryDetails({ date }) {
   useEffect(() => {
     if (uid) {
       setHistoryDetails(data);
-      console.log('historyDetails: ', JSON.stringify(data));
+      //console.log('historyDetails: ', JSON.stringify(data));
     }
   }, [uid, date, data]);
 
