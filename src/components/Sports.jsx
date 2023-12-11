@@ -26,8 +26,17 @@ export default function Sports({ bodyPart }) {
   }, [fetchedSports]);
 
   const handleUpdate = (updated) => {
-    setSports(sports.map((s) => (s.id === updated.id ? updated : s)));
-  }
+    setSports(sports.map((s) => {
+      if (s.id === updated.id) {
+        return {
+          ...updated,
+          checkedAt: updated.checked ? Date.now() : null,
+        };
+      }
+      return s;
+    }));
+  };
+
 
   const handleDelete = async (sport) => {
     await deleteSport(bodyPart.id, sport.id);
@@ -41,6 +50,11 @@ export default function Sports({ bodyPart }) {
 
   const filtered = getFilteredItems(sports, true);
 
+  function getFilteredItems(sports, filter) {
+    return sports
+      .filter((sport) => sport.checked === filter)
+      .sort((a, b) => a.checkedAt - b.checkedAt);
+  }
   const hasSelectedItems = filtered.length > 0;
 
   const handleClick = (e) => {
@@ -81,6 +95,3 @@ export default function Sports({ bodyPart }) {
   );
 }
 
-function getFilteredItems(sports, filter) {
-  return sports.filter((sport) => sport.checked === filter);
-}
